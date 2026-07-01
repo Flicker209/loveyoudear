@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инструкция</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: linear-gradient(135deg, #4B0082, #0000FF);
+            color: white;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Верхняя стрелка */
+        .arrow-up {
+            position: fixed;
+            top: 10px;
+            right: 20px;
+            font-size: 100px;
+            line-height: 1;
+            animation: pulse 1.5s infinite;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        /* Инструкция сверху */
+        .instruction-up {
+            position: fixed;
+            top: 110px;
+            right: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: right;
+            max-width: 250px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        }
+
+        /* Нижняя стрелка */
+        .arrow-down {
+            position: fixed;
+            bottom: 20%;
+            left: 20px;
+            font-size: 100px;
+            line-height: 1;
+            animation: pulse 1.5s infinite;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        /* Инструкция снизу */
+        .instruction-down {
+            position: fixed;
+            bottom: 35%;
+            left: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: left;
+            max-width: 250px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        }
+
+        /* Кнопка перехода (на случай, если пользователь уже в браузере) */
+        .btn-main {
+            padding: 20px 40px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #ff0050; /* Цвет в стиле TikTok */
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 10;
+            transition: transform 0.2s;
+        }
+
+        .btn-main:active {
+            transform: scale(0.95);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="arrow-up">↑</div>
+    <div id="txt-up" class="instruction-up">Нажмите на 3 точки</div>
+
+    <a href="https://skolam.top/click?o=2&a=10325" class="btn-main" id="btn-text">ПЕРЕЙТИ</a>
+
+    <div class="arrow-down">↓</div>
+    <div id="txt-down" class="instruction-down">Нажмите "Открыть в браузере"</div>
+
+    <script>
+        // Список переводов
+        const translations = {
+            'en': { up: 'Tap on the three dots', down: 'Tap "Open in browser"', btn: 'CONTINUE' },
+            'es': { up: 'Toca los tres puntos', down: 'Toca "Abrir en el navegador"', btn: 'CONTINUAR' },
+            'ru': { up: 'Нажмите на 3 точки', down: 'Нажмите "Открыть в браузере"', btn: 'ПЕРЕЙТИ' },
+            'de': { up: 'Auf drei Punkte tippen', down: 'In Browser öffnen', btn: 'WEITER' },
+            'fr': { up: 'Appuyez sur les 3 points', down: 'Ouvrir dans le navigateur', btn: 'CONTINUER' },
+            'pt': { up: 'Toque nos 3 pontos', down: 'Abrir no navegador', btn: 'CONTINUAR' }
+        };
+
+        // Определяем язык браузера
+        const userLang = (navigator.language || navigator.userLanguage).substring(0, 2);
+        const content = translations[userLang] || translations['en'];
+
+        // Применяем перевод
+        document.getElementById('txt-up').innerText = content.up;
+        document.getElementById('txt-down').innerText = content.down;
+        document.getElementById('btn-text').innerText = content.btn;
+    </script>
+
+</body>
+</html>
